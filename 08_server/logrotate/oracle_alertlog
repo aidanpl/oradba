@@ -1,0 +1,8 @@
+ /opt/oracle/diag/*/*/*/*/*log {
+    missingok
+    notifempty
+    dateext
+    rotate 5
+    weekly
+    su oracle oracle
+}

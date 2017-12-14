@@ -1,0 +1,13 @@
+#
+# Example crontab entries 
+#
+#
+# Manage log files weekly - Tue morning
+#
+30 08 * * 2 /opt/oracle/admin/scripts/tidy_adrci_rdbms.sh 30 > /opt/oracle/admin/logs/tidy_adrci_rdbms.log 2>&1
+30 09 * * 2 /opt/oracle/admin/scripts/tidy_adrci_tnslsnr.sh 30 > /opt/oracle/admin/logs/tidy_adrci_tnslsnr.log 2>&1
+#
+# Manage optimiser stats daily which auto purge is failing on 
+#
+00 06 * * * /opt/oracle/admin/scripts/dbms_stats_purge.sh db01 8  > /opt/oracle/admin/logs/dbms_stats_purge_cron.log 2>&1
+30 06 * * * /opt/oracle/admin/scripts/dbms_stats_purge.sh db02 8  > /opt/oracle/admin/logs/dbms_stats_purge_cron.log 2>&1

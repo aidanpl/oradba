@@ -1,0 +1,8 @@
+/opt/oracle/admin/*/scripts/rman/*hist*log {
+    missingok
+    notifempty
+    dateext
+    rotate 5
+    weekly
+    su oracle oracle
+}
