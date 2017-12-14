@@ -1,0 +1,26 @@
+#################################################################
+#
+# Name:          impdp_remap_examples.par
+#
+# Purpose:       Examples of use of the REMAP functionality when importing 
+#
+# Usage:         Dumpfile has already been created and is sitting in the appropriate directory
+#                These examples use the HR sample schema.
+#                Multiple REMAP_TABLESPACE options are allowed 
+# 
+#
+# Date           Who             Description
+#
+# 19th Jul 2017  Aidan Lawrence  Validated for git
+#
+DIRECTORY=dp_std_dir         # Must be an existing Oracle Directory
+CONTENT=ALL                  # Valid keyword values are: [ALL], DATA_ONLY and METADATA_ONLY.
+JOB_NAME=dpimp_remap         # Table of this name will be created in user schema
+LOGFILE =dpimp_remap.log     # Logfile will be written to the Data pump directory, not the local directory
+DUMPFILE=dpexp_schema_hr_%U.dmp   # Will read from one file per parallel, per maxsize of file
+STATUS=60                    # Time in seconds at which screen/log file will refresh
+FULL=N       				 # Do a full database import
+PARALLEL=2   				 # Can experiment with this number for performance
+# ***ESTIMATE_ONLY =Y        # Just write a log file with estimate of import
+REMAP_SCHEMA=HR:HR2          # Import all HR objects into schema HR2 
+REMAP_TABLESPACE=SAMPLE_SCHEMAS:HR2_DATA

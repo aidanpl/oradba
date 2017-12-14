@@ -1,0 +1,31 @@
+#################################################################
+#
+# Name:          expdp_tablespaces.par
+#
+# Purpose:       Datapump parameter file for tablespace export
+#
+# Usage:         Edit tablespace list as required. Directory must be pre-created
+#
+# Limitations:   Note this is NOT the same as transport tablespaces. This option is simply another mechanism of identifiy a list of segments to export
+#
+# Date           Who             Description
+#
+# 19th Jul 2017  Aidan Lawrence  Validated for git
+#
+DIRECTORY=dp_std_dir         # Must be an existing Oracle Directory
+CONTENT=ALL                  # Valid keyword values are: [ALL], DATA_ONLY and METADATA_ONLY.
+JOB_NAME=dpexp_tablespaces         # Table of this name will be created in user schema
+DUMPFILE=dpexp_tablespaces_%U.dmp  # Will get one file per parallel, per maxsize of file
+LOGFILE =dpexp_tablespaces.log     # Logfile will be written to the Data pump directory, not the local directory
+ESTIMATE_ONLY =N             # Should just write a log file with estimate of file size(s)
+STATUS=60                    # Time in seconds at which screen/log file will refresh
+FILESIZE=8G                  # Arbitrarily Set max filesize to some sensible limit for the data
+FULL=NO                      # Do not do a full database export
+PARALLEL=1                   # Can experiment with this number for performance
+REUSE_DUMPFILES=YES          # If content to override files each time set to YES
+# Specify the tablespaces with the schema prefix if desired 
+TABLESPACES=
+(
+ SAMPLE_SCHEMAS
+,DBMON
+)

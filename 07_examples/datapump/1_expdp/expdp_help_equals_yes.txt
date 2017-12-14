@@ -1,0 +1,178 @@
+#################################################################
+#
+# Name:          expdp_help_equals_yes
+#
+# Usage:         simply the output of expdp help=y for reference
+#
+The available keywords and their descriptions follow. Default values are listed within square brackets.
+
+ATTACH
+Attach to an existing job.
+For example, ATTACH=job_name.
+
+CLUSTER
+Utilize cluster resources and distribute workers across the Oracle RAC.
+Valid keyword values are: [Y] and N.
+
+COMPRESSION
+Reduce the size of a dump file.
+Valid keyword values are: ALL, DATA_ONLY, [METADATA_ONLY] and NONE.
+
+CONTENT
+Specifies data to unload.
+Valid keyword values are: [ALL], DATA_ONLY and METADATA_ONLY.
+
+DATA_OPTIONS
+Data layer option flags.
+Valid keyword values are: XML_CLOBS.
+
+DIRECTORY
+Directory object to be used for dump and log files.
+
+DUMPFILE
+Specify list of destination dump file names [expdat.dmp].
+For example, DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.dmp.
+
+ENCRYPTION
+Encrypt part or all of a dump file.
+Valid keyword values are: ALL, DATA_ONLY, ENCRYPTED_COLUMNS_ONLY, METADATA_ONLY and NONE.
+
+ENCRYPTION_ALGORITHM
+Specify how encryption should be done.
+Valid keyword values are: [AES128], AES192 and AES256.
+
+ENCRYPTION_MODE
+Method of generating encryption key.
+Valid keyword values are: DUAL, PASSWORD and [TRANSPARENT].
+
+ENCRYPTION_PASSWORD
+Password key for creating encrypted data within a dump file.
+
+ESTIMATE
+Calculate job estimates.
+Valid keyword values are: [BLOCKS] and STATISTICS.
+
+ESTIMATE_ONLY
+Calculate job estimates without performing the export.
+
+EXCLUDE
+Exclude specific object types.
+For example, EXCLUDE=SCHEMA:"='HR'".
+
+FILESIZE
+Specify the size of each dump file in units of bytes.
+FLASHBACK_SCN
+SCN used to reset session snapshot.
+
+FLASHBACK_TIME
+Time used to find the closest corresponding SCN value.
+
+FULL
+Export entire database [N].
+
+HELP
+Display Help messages [N].
+
+INCLUDE
+Include specific object types.
+For example, INCLUDE=TABLE_DATA.
+
+JOB_NAME
+Name of export job to create.
+
+LOGFILE
+Specify log file name [export.log].
+
+NETWORK_LINK
+Name of remote database link to the source system.
+
+NOLOGFILE
+Do not write log file [N].
+
+PARALLEL
+Change the number of active workers for current job.
+
+PARFILE
+Specify parameter file name.
+
+QUERY
+Predicate clause used to export a subset of a table.
+For example, QUERY=employees:"WHERE department_id > 10".
+
+REMAP_DATA
+Specify a data conversion function.
+For example, REMAP_DATA=EMP.EMPNO:REMAPPKG.EMPNO.
+
+REUSE_DUMPFILES
+Overwrite destination dump file if it exists [N].
+
+SAMPLE
+Percentage of data to be exported.
+
+SCHEMAS
+List of schemas to export [login schema].
+
+SERVICE_NAME
+Name of an active Service and associated resource group to constrain Oracle RAC resources.
+
+SOURCE_EDITION
+Edition to be used for extracting metadata.
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+TABLES
+Identifies a list of tables to export.
+For example, TABLES=HR.EMPLOYEES,SH.SALES:SALES_1995.
+
+TABLESPACES
+Identifies a list of tablespaces to export.
+
+TRANSPORTABLE
+Specify whether transportable method can be used.
+Valid keyword values are: ALWAYS and [NEVER].
+
+TRANSPORT_FULL_CHECK
+Verify storage segments of all tables [N].
+
+TRANSPORT_TABLESPACES
+List of tablespaces from which metadata will be unloaded.
+
+VERSION
+Version of objects to export.
+Valid keyword values are: [COMPATIBLE], LATEST or any valid database version.
+
+------------------------------------------------------------------------------
+
+The following commands are valid while in interactive mode.
+Note: abbreviations are allowed.
+
+ADD_FILE
+Add dumpfile to dumpfile set.
+
+CONTINUE_CLIENT
+Return to logging mode. Job will be restarted if idle.
+
+EXIT_CLIENT
+Quit client session and leave job running.
+
+FILESIZE
+Default filesize (bytes) for subsequent ADD_FILE commands.
+
+HELP
+Summarize interactive commands.
+
+KILL_JOB
+Detach and delete job.
+
+PARALLEL
+Change the number of active workers for current job.
+
+REUSE_DUMPFILES
+Overwrite destination dump file if it exists [N].
+
+START_JOB
+Start or resume current job.
+Valid keyword values are: SKIP_CURRENT.
+
+

@@ -1,0 +1,20 @@
+LISTENER =
+  (DESCRIPTION =
+   (ADDRESS = (PROTOCOL = IPC)(KEY=EXTPROC))
+   (ADDRESS = (PROTOCOL = TCP)(HOST = db01.example.com)(PORT = 1521))
+  )
+ )
+
+SID_LIST_LISTENER =
+  (SID_LIST =
+    (SID_DESC =
+      (GLOBAL_DBNAME = dbarep)
+      (ORACLE_HOME = /opt/oracle/product/11.2.0/dbhome_1)
+      (SID_NAME = dbarep)
+    )
+    (SID_DESC =
+      (SID_NAME = PLSExtProc)
+      (ORACLE_HOME = /opt/oracle/product/11.2.0/dbhome_1)
+      (PROGRAM = extproc)
+    )
+   )

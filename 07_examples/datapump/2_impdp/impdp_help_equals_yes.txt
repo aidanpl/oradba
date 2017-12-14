@@ -1,0 +1,194 @@
+#################################################################
+#
+# Name:          impdp_help_equals_yes.txt
+#
+# Usage:         simply the output of impdp help=y for reference
+#
+ATTACH
+Attach to an existing job.
+For example, ATTACH=job_name.
+
+CLUSTER
+Utilize cluster resources and distribute workers across the Oracle RAC.
+Valid keyword values are: [Y] and N.
+
+CONTENT
+Specifies data to load.
+Valid keywords are: [ALL], DATA_ONLY and METADATA_ONLY.
+
+DATA_OPTIONS
+Data layer option flags.
+Valid keywords are: SKIP_CONSTRAINT_ERRORS.
+
+DIRECTORY
+Directory object to be used for dump, log and SQL files.
+
+DUMPFILE
+List of dump files to import from [expdat.dmp].
+For example, DUMPFILE=scott1.dmp, scott2.dmp, dmpdir:scott3.dmp.
+
+ENCRYPTION_PASSWORD
+Password key for accessing encrypted data within a dump file.
+Not valid for network import jobs.
+
+ESTIMATE
+Calculate job estimates.
+Valid keywords are: [BLOCKS] and STATISTICS.
+
+EXCLUDE
+Exclude specific object types.
+For example, EXCLUDE=SCHEMA:"='HR'".
+
+FLASHBACK_SCN
+SCN used to reset session snapshot.
+
+FLASHBACK_TIME
+Time used to find the closest corresponding SCN value.
+
+FULL
+Import everything from source [Y].
+
+HELP
+Display help messages [N].
+
+INCLUDE
+Include specific object types.
+For example, INCLUDE=TABLE_DATA.
+
+JOB_NAME
+Name of import job to create.
+
+LOGFILE
+Log file name [import.log].
+
+NETWORK_LINK
+Name of remote database link to the source system.
+
+NOLOGFILE
+Do not write log file [N].
+
+PARALLEL
+Change the number of active workers for current job.
+
+PARFILE
+Specify parameter file.
+
+PARTITION_OPTIONS
+Specify how partitions should be transformed.
+Valid keywords are: DEPARTITION, MERGE and [NONE].
+
+QUERY
+Predicate clause used to import a subset of a table.
+For example, QUERY=employees:"WHERE department_id > 10".
+
+REMAP_DATA
+Specify a data conversion function.
+For example, REMAP_DATA=EMP.EMPNO:REMAPPKG.EMPNO.
+
+REMAP_DATAFILE
+Redefine data file references in all DDL statements.
+
+REMAP_SCHEMA
+Objects from one schema are loaded into another schema.
+
+REMAP_TABLE
+Table names are remapped to another table.
+For example, REMAP_TABLE=HR.EMPLOYEES:EMPS.
+
+REMAP_TABLESPACE
+Tablespace objects are remapped to another tablespace.
+
+REUSE_DATAFILES
+Tablespace will be initialized if it already exists [N].
+
+SCHEMAS
+List of schemas to import.
+
+SERVICE_NAME
+Name of an active Service and associated resource group to constrain Oracle RAC resources.
+
+SKIP_UNUSABLE_INDEXES
+Skip indexes that were set to the Index Unusable state.
+
+SOURCE_EDITION
+Edition to be used for extracting metadata.
+
+SQLFILE
+Write all the SQL DDL to a specified file.
+
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+STREAMS_CONFIGURATION
+Enable the loading of Streams metadata
+
+TABLE_EXISTS_ACTION
+Action to take if imported object already exists.
+Valid keywords are: APPEND, REPLACE, [SKIP] and TRUNCATE.
+
+TABLES
+Identifies a list of tables to import.
+For example, TABLES=HR.EMPLOYEES,SH.SALES:SALES_1995.
+
+TABLESPACES
+Identifies a list of tablespaces to import.
+
+TARGET_EDITION
+Edition to be used for loading metadata.
+
+TRANSFORM
+Metadata transform to apply to applicable objects.
+Valid keywords are: OID, PCTSPACE, SEGMENT_ATTRIBUTES and STORAGE.
+
+TRANSPORTABLE
+Options for choosing transportable data movement.
+Valid keywords are: ALWAYS and [NEVER].
+Only valid in NETWORK_LINK mode import operations.
+
+TRANSPORT_DATAFILES
+List of data files to be imported by transportable mode.
+
+TRANSPORT_FULL_CHECK
+Verify storage segments of all tables [N].
+
+TRANSPORT_TABLESPACES
+List of tablespaces from which metadata will be loaded.
+Only valid in NETWORK_LINK mode import operations.
+
+VERSION
+Version of objects to import.
+Valid keywords are: [COMPATIBLE], LATEST or any valid database version.
+Only valid for NETWORK_LINK and SQLFILE.
+
+------------------------------------------------------------------------------
+
+The following commands are valid while in interactive mode.
+Note: abbreviations are allowed.
+
+CONTINUE_CLIENT
+Return to logging mode. Job will be restarted if idle.
+
+EXIT_CLIENT
+Quit client session and leave job running.
+
+HELP
+Summarize interactive commands.
+
+KILL_JOB
+Detach and delete job.
+
+PARALLEL
+Change the number of active workers for current job.
+
+START_JOB
+Start or resume current job.
+Valid keywords are: SKIP_CURRENT.
+
+STATUS
+Frequency (secs) job status is to be monitored where
+the default [0] will show new status when available.
+
+STOP_JOB
+Orderly shutdown of job execution and exits the client.
+Valid keywords are: IMMEDIATE.

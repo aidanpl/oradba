@@ -1,0 +1,10 @@
+DBAREP =
+ (DESCRIPTION =
+   (ADDRESS_LIST =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = db01.example.com)(PORT = 1521))
+   )
+   (CONNECT_DATA =
+     (SERVICE_NAME = dbarep)
+   )
+ )
+

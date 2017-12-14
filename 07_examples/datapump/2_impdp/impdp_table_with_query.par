@@ -1,0 +1,31 @@
+#################################################################
+#
+# Name:          impdp_table_with_query.par
+#
+# Purpose:       Examples of import using a query to limit the data 
+#
+# Usage:         Dumpfile has already been created and is sitting in the appropriate directory
+#                These examples use the SH sample schema.
+#
+# Date           Who             Description
+#
+# 19th Jul 2017  Aidan Lawrence  Validated for git
+#
+DIRECTORY=dp_std_dir         # Must be an existing Oracle Directory
+CONTENT=ALL                  # Valid keyword values are: [ALL], DATA_ONLY and METADATA_ONLY.
+JOB_NAME=dpimp_table         # Table of this name will be created in user schema
+LOGFILE =dpimp_table.log     # Logfile will be written to the Data pump directory, not the local directory
+DUMPFILE=dpexp_schema_sh_%U.dmp   # Will read from one file per parallel, per maxsize of file
+STATUS=60                    # Time in seconds at which screen/log file will refresh
+FULL=N       				 # Do a full database import
+PARALLEL=2   				 # Can experiment with this number for performance
+# ***ESTIMATE_ONLY =Y        # Just write a log file with estimate of import
+TABLES=
+(
+ SH.COUNTRIES
+,SH.CUSTOMERS
+)
+# Specify the WHERE clause for each table using " as the overall delimiter
+QUERY=countries:"WHERE country_name = 'United Kingdom'"
+QUERY=customers:"WHERE cust_city = 'Birmingham'"
+
