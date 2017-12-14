@@ -1,0 +1,37 @@
+#################################################################
+#
+# Name:          rman_cold_backup.rcv
+#
+# Purpose:       RMAN Script to shutdown, cold backup and restart database
+#
+# Usage:         Overall backup strategy
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+allocate channel for maintenance type disk;
+#
+# clearing out general backups that have been deleted
+#
+crosscheck backup;
+delete noprompt expired backup;
+delete noprompt obsolete device type disk;
+release channel;
+#
+# For cold backup simply shutdown/startup mount and run backup database before reopening
+run {
+allocate channel rman1 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_cold_%u_%s';
+shutdown immediate;
+startup mount;
+backup database;
+alter database open;
+}
+#
+# Post run tidyup
+#
+allocate channel for maintenance type disk;
+crosscheck backup;
+delete noprompt obsolete device type disk;
+delete noprompt expired backup;
+release channel;

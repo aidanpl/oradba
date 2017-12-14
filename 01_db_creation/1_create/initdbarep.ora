@@ -1,0 +1,21 @@
+#
+# Example starting init.ora file 
+#
+audit_file_dest='/opt/oracle/admin/dbarep/adump'
+audit_trail='none'
+compatible='12.2.0.0.0'
+control_files='/data/oradata/dbarep/control01.ctl','/data/oradata/dbarep/control02.ctl'
+db_block_size=8192
+db_domain=''
+db_name='dbarep'
+db_unique_name='dbarep'
+db_recovery_file_dest_size=107374182400
+db_recovery_file_dest='/oraflash/dbarep/flash_recovery_area'
+diagnostic_dest='/opt/oracle'
+dispatchers='(PROTOCOL=TCP) (SERVICE=dbarepXDB)'
+log_archive_dest_1='LOCATION=USE_DB_RECOVERY_FILE_DEST VALID_FOR=(ONLINE_LOGFILE,ALL_ROLES)'
+memory_target=1G
+open_cursors=300
+processes=300
+remote_login_passwordfile='EXCLUSIVE'
+undo_tablespace='UNDO1'

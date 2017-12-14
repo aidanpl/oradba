@@ -1,0 +1,56 @@
+#################################################################
+#
+# Name:          rman_inc_0_backup.rcv
+#
+# Purpose:       RMAN Script to run an inc 0 'full' backup and corresponding archive log one
+#
+# Usage:         If backing up whole database each time
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+allocate channel for maintenance type disk;
+#
+# clearing out records of archivelog that may have been manually deleted before backup
+#
+crosscheck archivelog all;
+delete noprompt expired archivelog all;
+delete noprompt obsolete device type disk;
+#
+# clearing out general backups that have been deleted
+#
+crosscheck backup;
+delete noprompt expired backup;
+delete noprompt obsolete device type disk;
+release channel;
+#
+# Begin a full inc 0 backup
+#
+run {
+allocate channel inc_0 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_inc_0_%u_%s';
+backup as compressed backupset incremental level 0 filesperset = 3 database;
+}
+#
+# Backup and delete any archivelogs not previously backed up
+#
+run {
+allocate channel arc0 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_arc_%u_%s';
+backup as compressed backupset filesperset = 20 archivelog all not backed up delete all input;
+}
+#
+# Post run tidyup
+#
+allocate channel for maintenance type disk;
+#
+# Crosscheck/delete archivelogs
+#
+crosscheck archivelog all;
+delete noprompt expired archivelog all;
+#
+# Crosscheck/delete everything else
+#
+crosscheck backup;
+delete noprompt obsolete device type disk;
+delete noprompt expired backup;
+release channel;

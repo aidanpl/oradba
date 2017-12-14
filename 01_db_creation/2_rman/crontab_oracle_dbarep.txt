@@ -1,0 +1,13 @@
+#
+# dbarep gp1 - every day
+#
+15 02 * * * /opt/oracle/admin/dbarep/scripts/rman/rman_backup.sh dbarep rman_tbsp_gp1_backup > /opt/oracle/admin/dbarep/scripts/rman/rman_backup_cron.log 2>&1
+#
+# dbarep Archive - every day
+#
+00 20 * * * /opt/oracle/admin/dbarep/scripts/rman/rman_backup.sh dbarep rman_arc_backup > /opt/oracle/admin/dbarep/scripts/rman/rman_backup_cron.log 2>&1
+#
+# dbarep Other tbsp different groups on different days
+#
+30 02 * * 2 /opt/oracle/admin/dbarep/scripts/rman/rman_backup.sh dbarep rman_tbsp_gp2_backup > /opt/oracle/admin/dbarep/scripts/rman/rman_backup_cron.log 2>&1
+30 02 * * 3 /opt/oracle/admin/dbarep/scripts/rman/rman_backup.sh dbarep rman_tbsp_gp3_backup > /opt/oracle/admin/dbarep/scripts/rman/rman_backup_cron.log 2>&1

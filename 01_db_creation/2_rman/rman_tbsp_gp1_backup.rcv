@@ -1,0 +1,28 @@
+#################################################################
+#
+# Name:          rman_tbsp_gp1_backup.rcv
+#
+# Purpose:       RMAN Script to backup a named set of tablespaces
+#
+# Usage:         For core Oracle tablespaces - typically backedup every day
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+# Backup a bunch of tablespaces
+#
+run {
+allocate channel gp1 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_tbsp_gp1_%s';
+backup as compressed backupset filesperset = 1 tablespace SYSTEM;
+backup as compressed backupset filesperset = 1 tablespace SYSAUX;
+backup as compressed backupset filesperset = 2 tablespace UNDO1;
+}
+#
+# Post run tidyup
+#
+allocate channel for maintenance type disk;
+crosscheck backup;
+delete noprompt obsolete device type disk;
+delete noprompt expired backup;
+release channel;

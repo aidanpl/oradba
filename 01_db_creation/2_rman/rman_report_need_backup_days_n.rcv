@@ -1,0 +1,31 @@
+#################################################################
+#
+# Name:          rman_report_need_backup_days_n.rcv
+#
+# Purpose:       RMAN Report script for missing backups
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+# Manually set the days value as desired 
+#
+report need backup days=8;
+
+# NB Similar result can be obtained by SQL as part of:
+#
+#   SELECT
+#   fname || ' has not been backed up recently' as missing_fname_backup
+# , to_char(bkup_time,'DD-MON-YYYY') as most_recent_backup_day
+#  FROM
+# (
+#    SELECT ddf.file_name fname
+#  , MAX(vbd.completion_time) OVER(PARTITION BY ddf.file_name) bkup_time
+#  FROM dba_data_files ddf
+#  JOIN v$backup_datafile vbd
+#  ON ddf.file_id=vbd.file#
+#  )
+#  WHERE bkup_time < sysdate - 8
+#  ORDER BY most_recent_backup_day asc
+#  , fname asc
+#  /

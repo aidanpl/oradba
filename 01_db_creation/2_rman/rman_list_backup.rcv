@@ -1,0 +1,14 @@
+#################################################################
+#
+# Name:          rman_list_backup.rcv
+#
+# Purpose:       RMAN list script for backups 
+#
+# Usage:         Overall backup strategy
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+resync catalog;
+list backup;

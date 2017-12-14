@@ -1,0 +1,23 @@
+#################################################################
+#
+# Name:          rman_config_dbarep.rcv
+#
+# Purpose:       Initial rman configuration parameters
+#
+# Usage:         Set on first implementation
+#                                Create/link to appropriate directories as required
+#                                mkdir -p /var/orabackup/rman/ukthe-t00db00/dbarep
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+
+#
+# Edit configuration as desired
+#
+CONFIGURE RETENTION POLICY TO REDUNDANCY 1;
+CONFIGURE CONTROLFILE AUTOBACKUP ON;
+CONFIGURE CONTROLFILE AUTOBACKUP FORMAT FOR DEVICE TYPE DISK TO '/var/orabackup/rman/ukthe-t00db00/dbarep/%F.ctl';
+CONFIGURE SNAPSHOT CONTROLFILE NAME                          TO '/var/orabackup/rman/ukthe-t00db00/dbarep/dbarep_controlfile_snap.ctl';
+CONFIGURE CHANNEL DEVICE TYPE DISK FORMAT                       '/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_misc_%u_%s';

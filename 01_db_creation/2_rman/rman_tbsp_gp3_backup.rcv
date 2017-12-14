@@ -1,0 +1,33 @@
+#################################################################
+#
+# Name:          rman_tbsp_gp3_backup.rcv
+#
+# Purpose:       RMAN Script to backup a named set of tablespaces
+#
+# Usage:         For application specific databases - typically backed up weekly
+#
+#                When building a backup strategy for a new database which will have backups spread over a week divide the tablespace into reasonable groups.
+#                Typically based on either size and/or business area.
+#                Clone this file as many times as is needed for gp2, gp3, gp4 etc.
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+# Backup a bunch of tablespaces - arbitrary group chosen
+#
+run {
+allocate channel gp3 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_tbsp_gp3_%s';
+backup as compressed backupset filesperset = 2 tablespace RMANCAT;
+backup as compressed backupset filesperset = 2 tablespace DBMON;
+backup as compressed backupset filesperset = 2 tablespace DBMON_DBAREP;
+backup as compressed backupset filesperset = 2 tablespace SASH_REP;
+}
+#
+# Post run tidyup
+#
+allocate channel for maintenance type disk;
+crosscheck backup;
+delete noprompt obsolete device type disk;
+delete noprompt expired backup;
+release channel;

@@ -1,0 +1,29 @@
+#################################################################
+#
+# Name:          rman_test_backup_fail.rcv
+#
+# Purpose:       RMAN Script to backup a named set of tablespaces 
+#
+# Usage:         Deliberate typing error in tablespace name to test failure reporting
+#
+# Date            Who             Description
+#
+# 18th Jul 2017   Aidan Lawrence  Validated for git
+#
+allocate channel for maintenance type disk;
+#
+# Backup a bunch of tablespaces - arbitrary group chosen 
+#
+run {
+allocate channel ntt_tbsp type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_test_%s';
+backup as compressed backupset filesperset = 3 tablespace TYPO;
+}
+#
+# Post run tidyup
+#
+allocate channel for maintenance type disk;
+crosscheck backup;
+delete noprompt obsolete device type disk;
+delete noprompt expired backup;
+release channel;
+
