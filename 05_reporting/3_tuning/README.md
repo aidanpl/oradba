@@ -12,6 +12,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 A series of scripts for extracting tuning information from various parts of the data dictionary. The SQL is commonly based on views against the underlying dictionary. This allows the views to be used by any preferred front end. The scripts in this directory are typically used from a sql*plus command prompt. 
 
+Please note examples for SQL tuning including tracing are covered elsewhere in this repository. Look under 07_examples\SQL Trace
+
 <H2>Provided Scripts</H2>
 
 <H3>Generic</H3>
