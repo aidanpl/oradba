@@ -1,0 +1,91 @@
+#!/bin/bash
+#################################################################
+#
+# Name:          ora_startstop
+#
+# Purpose:       Autostart/stop Oracle instances
+#
+# Usage:         ora_startstop 
+#
+# Preparation.   Note this script has $ORACLE_HOME hardcoded. Please amend manually for your environment. If running multiple ORACLE_HOME on a server, use the ORACLE_HOME which the listener is running under. This cannot be provided as a parameter as the script is called automatically during server startup/shutdown
+#
+# Comments       This script calls the 'old' Oracle method of starting instances and the listener on server boot. In recent years Oracle have moved away from this as they focus on grid infrastructure, ASM instances, Dataguard and the like. If you are using any of those features check the 'Oracle Restart' functionality. 
+#
+#                However for standalone, single server instances the dbstart and related dbshut functionality remain a reasonable approach. 
+#
+#                Note although this is a bash script the .sh prefix is deliberately left off. This is due to the module running as a service within linux. See README for further details  
+#
+# Set the config run levels - mandatory for chkconfig 
+# chkconfig: 2345 90 90
+#
+# Date            Who             Description
+#
+# 26th Feb 2018   Aidan Lawrence  Added to standard scripts 
+
+
+#
+# Hard Code ORACLE_HOME
+ORACLE_HOME=/opt/oracle/product/12.2.0/dbhome_1
+
+#
+# Source standard startup functionality
+#
+# Source function library.
+. /etc/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+module=ora_dbstart
+lockfile=/var/lock/subsys/$module
+
+#
+# When starting execute dbstart. If called with $ORACLE_HOME will also start the listener
+
+
+ora_start() {
+[ "$NETWORKING" = "no" ] && exit 1
+echo -n "Starting $module: "
+su - oracle -c "$ORACLE_HOME/bin/dbstart $ORACLE_HOME" > /tmp/ora_dbstart.log 2>&1
+RETVAL=$?
+echo
+[ $RETVAL -eq 0 ] && touch $lockfile
+return $RETVAL
+}
+
+#
+# When stopping execute dbshut. If called with $ORACLE_HOME will also stop the listener
+
+ora_stop() {
+echo -n "Stopping $module: "
+su - oracle -c "$ORACLE_HOME/bin/dbshut $ORACLE_HOME" > /tmp/ora_dbshut.log 2>&1
+RETVAL=$?
+echo
+[ $RETVAL -eq 0 ] && rm -f $lockfile
+return $RETVAL
+}
+
+###
+#
+# Main script
+
+# Start/stop will be provided via the calling environment
+# Restart available for manual calling 
+case "$1" in
+	start)
+	ora_start
+	;;
+stop)
+	ora_stop
+	;;
+restart)
+	ora_stop
+	ora_start
+	;;
+*)
+	echo $"Usage: $0 {start|stop|restart}"
+	exit 2
+esac
+
+exit
+
