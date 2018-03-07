@@ -24,6 +24,7 @@ The packages to populate both of these tables include purge processing to manage
 <H1>Pre-requisites</H1>
 
 Tables DBMON.DBA_ROADMAP and DBMON.DBA_PARAMETERS have been created and populated 
+Utility function date_to_unix_ts has been created - see utilities/101_cr_utility_functions.sql
 
 <H1>Implementation</H1>  
 
@@ -42,6 +43,8 @@ As the DBMON user
   <li>204_run_pkg_tbsp_stats_target.sql     - One off execution of both  pop_tbsp_stats_target and pop_file_highwatermark_target for testing </li>
   <li>205_tbsp_stats_view_vw.sql            - a series of views against  TBSP_STATS and DATAFILE_HIGHWATERMARK</li>
 </ol>
+
+Known Issues: If running in a version older than Oracle 12.2 view tbsp_stats_7_json in 205_tbsp_stats_view_vw.sql will not compile - this uses standard Oracle JSON functions not available before this release. The error can be ignored and the view dropped 
 
 To schedule regular population of TBSP_STATS:
 

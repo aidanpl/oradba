@@ -7,6 +7,9 @@
  Usage:         A series for views typically called FROM front end perl/cgi etc. etc.
 
  Implementation Typically run under 'dbmon' type user. Initially cloned FROM tbsp_stats 
+ 
+                Note tbsp_stats_7_json uses JSON_ARRAY function only available from Oracle 12.2 and later 
+				It also uses the utility function date_to_unix_ts - see 03_dbmon_user/utilities/101_cr_utility_functions.sql for further information
 
  Next Steps:
 
@@ -16,6 +19,7 @@
  26th Jan 2016   Aidan Lawrence  Included dbname in tbsp_stats_2_growth_predict in partition by clause to allow for multiple db repositories 
  28th Jun 2017   Aidan Lawrence  Validated for git 
   5th Jul 2017   Aidan Lawrence  Migrated tbsp over/under to views 
+  7th Mar 2018   Aidan Lawrence  Added tbsp_stats_7_json for JSON output 
 
 */
 
@@ -286,3 +290,34 @@ AND pct_free_with_extend < (SELECT param_value
                          AND valid = 'Y')
 AND tablespace_name not like 'UNDO%'
 ;
+
+CREATE OR REPLACE VIEW tbsp_stats_7_json
+--
+-- Common TBSP Stats in both JSON_ARRAY and JSON_OBJECT format
+-- generated_date is provided as a unix_timestamp * 1000 as a common format for flot charsts
+-- dbname, tablespace_name and generated_date are provided as individual columns to allow flexibilty when querying the view
+AS
+SELECT 
+  tbsp.dbname
+, tbsp.tablespace_name
+, tbsp.generated_date
+, JSON_ARRAY(
+  tbsp.dbname
+, tbsp.tablespace_name
+, date_to_unix_ts(tbsp.generated_date) * 1000
+, ROUND((tbsp.bytes_used/1048976),0) 
+, ROUND((tbsp.bytes_max_no_extend/1048976),0) 
+) AS tbsp_stats_json_array
+, JSON_OBJECT(
+  'Dbname' VALUE tbsp.dbname
+, 'Tablespace' VALUE tbsp.tablespace_name
+, 'GeneratedDateTS' VALUE date_to_unix_ts(tbsp.generated_date) * 1000
+, 'MbytesUsed' VALUE ROUND((tbsp.bytes_used/1048976),0) 
+, 'MbytesMaxNoExtend' VALUE ROUND((tbsp.bytes_max_no_extend/1048976),0) 
+FORMAT JSON
+) AS tbsp_stats_json_object
+FROM
+tbsp_stats tbsp
+WHERE tablespace_name not like 'UNDO%'
+ORDER BY dbname, tablespace_name , generated_date 
+/
