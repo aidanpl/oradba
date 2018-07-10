@@ -23,16 +23,18 @@ To create the DBMON user study the scripts in this directory, adjusting names, p
 Optional supporting items include 
 
 <ol>
-<li>21_cr_tab_dba_roadmap.sql - create table DBA_ROADMAP referenced in various monitoring facilities</li>
+<li>21_cr_tab_dba_roadmap.sql    - create table DBA_ROADMAP referenced in various monitoring facilities</li>
 <li>22_cr_tab_dba_parameters.sql - create table DBA_PARAMETERS referenced in various monitoring facilities</li>
-<li>23_cr_tab_vw_parameters.sql - create table VW_PARAMETERS referenced in various monitoring views</li>
-<li>24_cr_tab_job_results.sql - create table JOB_RESULTS referenced in various monitoring facilities</li>
+<li>23_cr_tab_vw_parameters.sql  - create table VW_PARAMETERS referenced in various monitoring views</li>
+<li>24_cr_tab_job_results.sql    - create table JOB_RESULTS referenced in various monitoring facilities</li>
 </ol>
 
 <H1>Related items</H1> 
 
 </ul>
-<li>remote alert log monitoring</li> 
-<li>capacity</li> 
+<li>alert log monitoring</li> 
 <li>audit</li>
+<li>capacity</li> 
+<li>job_results</li> 
+<li>utilities</li> 
 </ul>
