@@ -20,6 +20,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_job_results_target
 
  15th Jul 2013	 Aidan Lawrence  Cloned from similar
  10th Oct 2017   Aidan Lawrence  Validated pre git  
+ 21st Aug 2018   Aidan Lawrence  Changed actual_start_time to insert based on TIMESTAMP from DATE to avoid duplicate error issues on insert
 
 */  
 PROCEDURE pop_job_results_target
@@ -68,7 +69,8 @@ SELECT
    d.name AS dbname
 ,  jrd.owner
 ,  jrd.job_name
-,  to_date(to_char(jrd.actual_start_date,'Dy DD-MON-YYYY HH24:MI:SS'),'Dy DD-MON-YYYY HH24:MI:SS') as actual_start_time
+--,  to_date(to_char(jrd.actual_start_date,'Dy DD-MON-YYYY HH24:MI:SS'),'Dy DD-MON-YYYY HH24:MI:SS') as actual_start_time
+,  jrd.actual_start_date
 ,  to_date(to_char(jrd.log_date,'Dy DD-MON-YYYY HH24:MI:SS'),'Dy DD-MON-YYYY HH24:MI:SS') as log_time
 ,  jrd.run_duration
 ,  jrd.status
