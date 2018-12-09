@@ -28,14 +28,14 @@ release channel;
 # Begin a full inc 0 backup
 #
 run {
-allocate channel inc_0 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_inc_0_%u_%s';
+allocate channel inc_0 type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_inc_0_%u_%s';
 backup as compressed backupset incremental level 0 filesperset = 3 database;
 }
 #
 # Backup and delete any archivelogs not previously backed up
 #
 run {
-allocate channel arc0 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_arc_%u_%s';
+allocate channel arc0 type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_arc_%u_%s';
 backup as compressed backupset filesperset = 20 archivelog all not backed up delete all input;
 }
 #

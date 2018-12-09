@@ -21,7 +21,7 @@ release channel;
 #
 # For cold backup simply shutdown/startup mount and run backup database before reopening
 run {
-allocate channel rman1 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_cold_%u_%s';
+allocate channel rman1 type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_cold_%u_%s';
 shutdown immediate;
 startup mount;
 backup database;

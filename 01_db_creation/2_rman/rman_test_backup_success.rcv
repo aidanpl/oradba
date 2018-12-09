@@ -15,7 +15,7 @@ allocate channel for maintenance type disk;
 # Backup a bunch of tablespaces - arbitrary group chosen 
 #
 run {
-allocate channel ntt_tbsp type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_test_%s';
+allocate channel ntt_tbsp type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_test_%s';
 backup as compressed backupset filesperset = 3 tablespace USERS;
 }
 #

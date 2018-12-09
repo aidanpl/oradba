@@ -28,7 +28,7 @@ perl -p -i.bak -e 's#__SUB__CWD__#'$(pwd)'#g' *.sql */*.sql */*.dat
 
 Sanity check afterwards by diff the original files .bak files with the amended one - should see your working directory
 
-dbarep:ukthe-t00db00:~/aidan/db-sample-schemas-master $ diff mk_dir.sql.bak mk_dir.sql
+dbarep:db01:~/aidan/db-sample-schemas-master $ diff mk_dir.sql.bak mk_dir.sql
 58,60c58,60
 < CREATE OR REPLACE DIRECTORY data_file_dir AS '__SUB__CWD__/sales_history/';
 < CREATE OR REPLACE DIRECTORY log_file_dir  AS '__SUB__CWD__/log/';

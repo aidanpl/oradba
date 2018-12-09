@@ -22,7 +22,7 @@
 # Backup archivelogs
 #
 run {
-allocate channel ntt_arc0 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_arc_%s';
+allocate channel ntt_arc0 type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_arc_%s';
 backup as compressed backupset filesperset = 5 archivelog all not backed up delete all input;
 }
 #

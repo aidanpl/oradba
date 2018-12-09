@@ -13,7 +13,7 @@
 # Backup a bunch of tablespaces
 #
 run {
-allocate channel gp1 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_tbsp_gp1_%s';
+allocate channel gp1 type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_tbsp_gp1_%s';
 backup as compressed backupset filesperset = 1 tablespace SYSTEM;
 backup as compressed backupset filesperset = 1 tablespace SYSAUX;
 backup as compressed backupset filesperset = 2 tablespace UNDO1;

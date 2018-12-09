@@ -17,7 +17,7 @@
 # Backup a bunch of tablespaces - arbitrary group chosen
 #
 run {
-allocate channel gp3 type disk format='/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_tbsp_gp2_%s';
+allocate channel gp3 type disk format='/var/orabackup/rman/db01/dbarep/%d_%T_tbsp_gp2_%s';
 backup as compressed backupset filesperset = 2 tablespace TOOLS;
 backup as compressed backupset filesperset = 2 tablespace USERS;
 backup as compressed backupset filesperset = 2 tablespace SAMPLE_SCHEMAS;

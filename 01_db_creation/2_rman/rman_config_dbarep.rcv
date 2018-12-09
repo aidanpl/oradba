@@ -6,7 +6,7 @@
 #
 # Usage:         Set on first implementation
 #                                Create/link to appropriate directories as required
-#                                mkdir -p /var/orabackup/rman/ukthe-t00db00/dbarep
+#                                mkdir -p /var/orabackup/rman/db01/dbarep
 #
 # Date            Who             Description
 #
@@ -18,6 +18,6 @@
 #
 CONFIGURE RETENTION POLICY TO REDUNDANCY 1;
 CONFIGURE CONTROLFILE AUTOBACKUP ON;
-CONFIGURE CONTROLFILE AUTOBACKUP FORMAT FOR DEVICE TYPE DISK TO '/var/orabackup/rman/ukthe-t00db00/dbarep/%F.ctl';
-CONFIGURE SNAPSHOT CONTROLFILE NAME                          TO '/var/orabackup/rman/ukthe-t00db00/dbarep/dbarep_controlfile_snap.ctl';
-CONFIGURE CHANNEL DEVICE TYPE DISK FORMAT                       '/var/orabackup/rman/ukthe-t00db00/dbarep/%d_%T_misc_%u_%s';
+CONFIGURE CONTROLFILE AUTOBACKUP FORMAT FOR DEVICE TYPE DISK TO '/var/orabackup/rman/db01/dbarep/%F.ctl';
+CONFIGURE SNAPSHOT CONTROLFILE NAME                          TO '/var/orabackup/rman/db01/dbarep/dbarep_controlfile_snap.ctl';
+CONFIGURE CHANNEL DEVICE TYPE DISK FORMAT                       '/var/orabackup/rman/db01/dbarep/%d_%T_misc_%u_%s';

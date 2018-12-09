@@ -21,7 +21,7 @@ mkdir -p /opt/oracle/admin/dbarep/adump
 mkdir -p /oraflash/dbarep/flash_recovery_area
 
 #
-# Backup locations - assumes /orabackup is already mounted 
+# Backup locations - assumes /orabackup is already mounted - db01 is example hostname
 
-mkdir -p /orabackup/rman/ukthe-t00db00/dbarep
-mkdir -p /orabackup/datapump/ukthe-t00db00/dbarep
+mkdir -p /orabackup/rman/db01/dbarep
+mkdir -p /orabackup/datapump/db01/dbarep
