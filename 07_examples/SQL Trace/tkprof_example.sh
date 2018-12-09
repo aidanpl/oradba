@@ -5,8 +5,8 @@
 #
 # Purpose:       Simple examples for tkprof usage. No attempt to genericise Adjust environment as desired  
 #
-# Usage:         tkprof_example.sh <db> <trace_file>
-#                tkprof_example.sh dbarep dbarep_ora_2476_BUG-123_HR_emp_dept
+# Usage:         tkprof_example.sh <db> <trace_file> <schema> <pw>
+#                tkprof_example.sh dbarep dbarep_ora_2476_BUG-123_HR_emp_dept HR <pw> 
 #
 #                Various tkprof options are shown - simply choose whichever you prefer, with/without edit 
 #
@@ -25,13 +25,15 @@ if [[ -n "$2" ]]; then
 	 # Set parameters
      export ORACLE_SID=$1
      export TRACE_FILE=$2
+	 export SCHEMA=$3
+	 export PW=$4
 else
 #
 # Invalid input
 #
 	echo "invalid input"
 	echo "Subject: Attempt to run tkprof with invalid parameters"
-	echo "usage is tkprof_example.sh <db> <trace_file>"
+	echo "usage is tkprof_example.sh <db> <trace_file> <schema> <pw>"
     exit 1
 	
 fi
@@ -53,8 +55,12 @@ export TRACE_DEST=$DIAG_DEST/rdbms/$ORACLE_SID/$ORACLE_SID/trace
 
 cd $TRACE_DEST
 
-# Standard default tkprof 
+
+# Full tkprof syntax:
 #
+# tkprof filename1 filename2 [waits=yes|no] [sort=option] [print=n] [aggregate=yes|no] [insert=filename3] [sys=yes|no] [table=schema.table] [explain=user/password] [record=filename4] [width=n]
+#
+# Standard default tkprof #
 # tkprof ${TRACE_FILE}.trc ${TRACE_FILE}.lst 
 # less ${TRACE_FILE}.lst
 
@@ -69,8 +75,8 @@ cd $TRACE_DEST
 # e.g. Sort by number of consistent mode blocks during fetch
 #
 #
-tkprof ${TRACE_FILE}.trc ${TRACE_FILE}.lst_cpu sort=fchqry 
-less ${TRACE_FILE}.lst_cpu
+tkprof ${TRACE_FILE}.trc ${TRACE_FILE}.lst_cpu sort=fchqry explain=${SCHEMA}/${PW}
+# less ${TRACE_FILE}.lst_cpu
 
 #
 # Other tkprof options of interest 

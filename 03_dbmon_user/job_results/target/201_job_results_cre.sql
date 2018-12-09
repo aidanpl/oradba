@@ -9,6 +9,7 @@
  Date            Who             Description
  15th Jul 2013	 Aidan Lawrence  Cloned from similar
  10th Oct 2017   Aidan Lawrence  Validated pre git  
+ 21st Aug 2018   Aidan Lawrence  Changed actual_start_time from DATE to TIMESTAMP to avoid duplicate error issues on insert
 
 */
 
@@ -23,7 +24,7 @@ CREATE TABLE job_results
 ( dbname            VARCHAR2(8)   NOT NULL
 , owner             VARCHAR2(30)  NOT NULL
 , job_name          VARCHAR2(30)  NOT NULL
-, actual_start_time DATE
+, actual_start_time TIMESTAMP
 , log_time 		    DATE
 , run_duration 		INTERVAL DAY (3) TO SECOND (6)
 , status 			VARCHAR2(30)  NOT NULL
