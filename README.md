@@ -1,6 +1,6 @@
 <H1>Oracle DBA creation, maintenance, reporting and troubleshooting scripts</H1>
 
-Copyright (c) 2017 Aidan Lawrence, Caduceus Consulting Ltd
+Copyright (c) 2019 Aidan Lawrence, Caduceus Consulting Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -16,7 +16,7 @@ As of Sep 2017 many are used 'in anger' in production against  Oracle 11.2 datab
 
 To re-emphasise the generic copyright and "as is" comments above I strongly recommend you test any of this functionality before using in a production environment. Oracle continually introduces new functionality, tweaks parameters from release to release. Your environment may have different options installed, run on a different flavour of Linux or Windows which could give unexpected results. However even with that warning in place, most functionality here has worked with only minor tweaks since at least Oracle 9 and on both Linux and Windows environments. 
 
-I hope you fined these useful and I welcome feedback.
+I hope you find these useful and I welcome feedback.
 
 <H1>Areas Covered</H1>
 
