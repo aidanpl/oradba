@@ -92,7 +92,7 @@ BEGIN
 	d.name
   , TRUNC(dat.timestamp) 
   , dat.username 
-  , dat.os_username
+  , NVL(dat.os_username,'Unknown')
   , dat.userhost
   , COUNT(*)
   , SUM(dat.logoff_lread)
@@ -106,7 +106,7 @@ BEGIN
   GROUP BY d.name
          , TRUNC(dat.timestamp)
          , dat.username
-		 , dat.os_username
+		 , NVL(dat.os_username,'Unknown')
 		 , dat.userhost
 		 ;
 		 
